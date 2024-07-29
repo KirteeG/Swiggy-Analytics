@@ -1,0 +1,16 @@
+Count of customers who have not placed any orders.
+Average price of each food type.
+Average price of food for each restaurant.
+Identification of the top restaurant based on the number of orders, both overall and specifically for June.
+Identification of restaurants with monthly revenue greater than a specified value.
+Detailed orders with order specifics for a particular customer within a specified date range.
+Restaurant with the highest number of repeat customers.
+Month-over-month revenue growth for Swiggy and each restaurant.
+Top 3 ordered dishes.
+Overall revenue generated during a specific period.
+Average order value per user.
+Average delivery time for each restaurant and its effect on customer satisfaction.
+Average rating for each restaurant and delivery partner.
+Patterns in order volume based on days and times.
+Count of orders delivered by each delivery partner and their average delivery rating.
+Distribution of delivery partners in the Delivery_Partner table.
