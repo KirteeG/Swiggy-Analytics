@@ -6,10 +6,9 @@ ON u.user_id = o.user_id
 Where o.order_id IS NULL;
 
 -- What is the average price of each food type?
-SELECT m.menu_id, m.r_id, m.f_id, m.price, AVG(m.price) AS AvgPrice
+SELECT f.f_name, AVG(m.price) AS AvgPrice
 FROM menu m
-JOIN food f
-ON m.f_id = f.f_id
+JOIN food f ON m.f_id = f.f_id
 GROUP BY f.f_name
 ORDER BY AvgPrice;
 
@@ -66,12 +65,12 @@ WHERE res_rank = 1;
 --  Find the number of orders for each restaurant in June
 SELECT 
     r.r_name AS "Restaurant name",
-    month(o.date) AS "Month",
+    MONTH(o.date) AS "Month",
     COUNT(o.order_id) AS "Order Count"
 FROM orders o
 INNER JOIN restaurants r ON o.r_id = r.r_id
 WHERE o.date BETWEEN '01-06-2022' AND '20-06-2022'
-GROUP BY r.r_name
+GROUP BY r.r_name, MONTH(o.date)
 ORDER BY COUNT(o.order_id) DESC;
 
 -- Restaurants with monthly revenue greater than 500.
@@ -125,15 +124,13 @@ SUM(Revenue) OVER (order by Month) AS "Month On Month Growth"
 FROM X;
 
 -- Find the top 3 most ordered dish
-select f.f_name, count(*) as order_count from order_details od
-inner join food f
-on f.f_id = od.f_id
-group by f.f_name
-order by order_count desc
+SELECT f.f_name AS Name, 
+       COUNT(*) AS Order_Count 
+FROM order_details od
+INNER JOIN food f ON f.f_id = od.f_id
+GROUP BY f.f_name
+ORDER BY Order_Count DESC
 LIMIT 3;
-SELECT Month, 
-SUM(Revenue) OVER (order by Month) AS "Month on Month Growth"
-FROM X;
 
 -- Month over month revenue growth of each restaurant.
 WITH X AS (
